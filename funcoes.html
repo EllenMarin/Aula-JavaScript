@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+    <script>
+        /*
+        Duas partes de uma função
+
+        1) Declaração da função
+        2) Invocação da função
+        */
+        function greeting(username) {
+            var date = new Date();
+            var statement = "Boa noite";
+
+            if (date.getHours() < 13) {
+                statement = "Bom dia";
+            }
+            if (date.getHours() < 20) {
+                statement = "Boa tarde";
+            }
+            console.log(statement + ", " + username);
+        }
+        greeting("Beatriz");
+        greeting("Gustavo");
+        greeting("Bruno");
+        //
+
+        function sum(X, Y) {
+            var result = X + Y;
+
+            console.log("A soma de " + X + " + " + Y + " é igual a " + result)
+
+        }
+        sum(4, 8);
+        sum(12, 8);
+        sum(33, 44);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

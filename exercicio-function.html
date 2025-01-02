@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function grader(name, score) {
+
+            var nota = "";
+
+            if (score <= 9) {
+                nota = "Negativo";
+            }
+            else if (score > 18) {
+                nota = "Excelente"
+            }
+            else if (score > 14) {
+                nota = "Bom";
+            }
+            else {
+                nota = "Suficiente";
+            }
+
+            console.log(name + " teve " + score + " que é " + nota)
+
+        }
+        grader("Ana", 17);
+        grader("Jorge", 12);
+        grader("Vicente", 4);
+        grader("Bernardo", 20);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

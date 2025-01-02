@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+    <script>
+        var superHero = {
+            name: "Homem-aranha",
+            power: "Agilidade aranha",
+            secretIdentity: "Peter Parker",
+        }
+        console.log(superHero);
+
+        var duenteVerde = {
+            name: "duente verde",
+            power: "gás toxico",
+            secretIdentity: "John Due",
+        }
+        console.log(duenteVerde.name, duenteVerde.power, duenteVerde.secretIdentity);
+
+        //
+        var employee = {
+            name: "Zé Why Not",
+            jobTitle: "Recursos Humanos",
+            wage: 1000,
+            colletiveFirignsThisMounth: 0,
+
+            firePeople: function (number) {
+                this.colletiveFirignsThisMounth = this.colletiveFirignsThisMounth + number
+            }
+        }
+        employee.firePeople(24);
+        employee.firePeople(102);
+
+        console.log(employee.name + " dos " + employee.jobTitle + " despediu este mês: " + employee.colletiveFirignsThisMounth + " pessoas")
+
+        //
+        var empregadaDeLimpeza = {
+            name: "Maria",
+            funcao: "limpar a casa",
+            numberWorkingDays: 0,
+
+            addNumberOfDays: function (number) {
+                if (this.numberWorkingDays + number > 7) {
+                    throw 'Atingiu o máximo de dias';
+                }
+
+                this.numberWorkingDays = this.numberWorkingDays + number
+            }
+        }
+
+        try {
+            empregadaDeLimpeza.addNumberOfDays(2);
+            empregadaDeLimpeza.addNumberOfDays(6);
+
+            console.log(`A ${empregadaDeLimpeza.name} que tem a função de ${empregadaDeLimpeza.funcao} vem ${empregadaDeLimpeza.numberWorkingDays} vezes na semana`)
+
+        } catch (error) {
+            console.log(`Não foi possivel concluir ${error}`)
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
