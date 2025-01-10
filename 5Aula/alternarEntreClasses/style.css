@@ -1,0 +1,23 @@
+#box {
+    transition: all 1s;
+}
+
+.red {
+    width: 500px;
+    height: 400px;
+    background-color: #F00;
+    color: #FFF;
+    font-size: 200%;
+    text-align: center;
+    line-height: 400px;
+}
+
+.green {
+    width: 250px;
+    height: 200px;
+    background-color: #060;
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+    line-height: 200px;
+}

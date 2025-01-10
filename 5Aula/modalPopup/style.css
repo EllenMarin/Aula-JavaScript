@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.hide{
+    display: none !important;
+}
+#modalWrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.352);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+#modal{
+    min-width: 60vw;
+    min-height: 60vh;
+    background-color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#modal div{
+    text-align: center;
+    margin: 10px;
+}
+#modal div button{
+    padding: 5px 25px;
+}
+
