@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervalos de tempo</title>
+    <script>
+        /*escrever os segudnos a passas na pagina no span correto*/
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let s = 0;
+            let m = 0;
+            let h = 0;
+
+            let seconds = document.getElementById("seconds");
+            let minutes = document.getElementById("minutes");
+            let hours = document.getElementById("hours");
+
+            setInterval(function () {
+                if (s < 59) {
+                    s++;
+                    seconds.textContent = s;
+                } else {
+                    s = 0;
+
+                    if (m < 59) {
+                        m++;
+                        minutes.textContent = m;
+                    } else {
+                        m = 0;
+                        h++;
+                        hours.textContent = h;
+                    }
+                }
+                if (h > 23) {
+                    h = 0;
+                }
+            }, 1000)
+
+        })
+
+    </script>
+</head>
+
+<body>
+
+    <div>
+        <span id="hours">0</span> :
+        <span id="minutes">0</span> :
+        <span id="seconds">0</span>
+    </div>
+
+</body>
+
+</html>
