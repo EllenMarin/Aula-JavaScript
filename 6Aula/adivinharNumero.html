@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinha um número entre 1 e 10</title>
+
+    <script>
+        let userNumber = prompt("Adivinhe um número entre 1 e 10");
+        /*exercicio: 
+        criar numero aleatorio entre 1 e 10 
+        se o utilizador acertou, confitmar se nao dizer que falhou
+        */
+        let randomNumber = Math.ceil(Math.random() * 10)
+        let attemptsLeft = 5;
+
+        while (userNumber != randomNumber && attemptsLeft > 0) {
+            attemptsLeft--;
+
+            userNumber = prompt("Falhou, tente de novo. Tem ainda " + attemptsLeft + " tentativas");
+        }
+
+        if (userNumber == randomNumber) {
+            alert("Acertou! Era mesmo " + randomNumber)
+        } else {
+            alert("Game Over")
+        }
+        console.log(randomNumber);
+
+        /*if (userNumber == randomNumber) {
+            console.log("Acertou");
+        } else {
+            console.log("Falhou");
+        }*/
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
