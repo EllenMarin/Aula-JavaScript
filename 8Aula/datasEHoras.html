@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datas e Horas</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+
+            /*console.log(datetime.getHours(), datetime.getMinutes(), datetime.getSeconds());
+
+            console.log(datetime.getFullYear());
+            console.log(datetime.getMonth() + 1);
+            console.log(datetime.getDate());*/
+
+            setInterval(function () {
+                const datetime = new Date();
+
+                const hours = document.getElementById("hours");
+                const minutes = document.getElementById("minutes");
+                const seconds = document.getElementById("seconds");
+
+                let h = datetime.getHours();
+                let m = datetime.getMinutes();
+                let s = datetime.getSeconds();
+
+                seconds.textContent = s < 10 ? "0" + s : s;
+                minutes.textContent = m < 10 ? "0" + m : m;
+                hours.textContent = h < 10 ? "0" + h : h;
+
+            }, 1000)
+
+        })
+    </script>
+</head>
+
+<body>
+    <div id="time">
+        <span id="hours">0</span> :
+        <span id="minutes">0</span> :
+        <span id="seconds">0</span>
+    </div>
+
+</body>
+
+</html>

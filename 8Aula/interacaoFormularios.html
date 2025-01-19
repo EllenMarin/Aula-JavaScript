@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integração com formulários</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            /*Eventos para trabalhar com formulários:
+            -> onfocus
+            ->onblur
+            ->onchanche
+            ->onsubmit
+            */
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();//previne o comportamento padrao (ler o method e o action e sair da pagina)
+
+                console.log("formulario submetido!")
+
+                console.log(form.full_name.value);
+                console.log(form.email.value);
+                console.log(form.coments.value);
+
+                //confirmar password
+                if (form.password.value !== form.password_confirm.value) {
+                    console.log("Digitou mal password")
+                }
+
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <form method="post" action="interacaoFormularios.html">
+        <div>
+            <label>Nome completo:
+                <input type="text" name="full_name" placeholder="Digite seu nome completo">
+            </label>
+        </div>
+        <div>
+            <label>Password:
+                <input type="password" name="password" placeholder="Digite sua senha">
+            </label>
+        </div>
+        <div>
+            <label>Confirma sua Password:
+                <input type="password" name="password_confirm" placeholder="Confirmar senha">
+            </label>
+        </div>
+        <div>
+            <label>Email:
+                <input type="email" name="email" placeholder="Digite seu email">
+            </label>
+        </div>
+        <div>
+            <label>Mensagem:
+                <textarea name="coments" id="" cols="20" rows="5"></textarea>
+            </label>
+        </div>
+        <div>
+            <button type="submit" name="send">Enviar</button>
+        </div>
+
+
+    </form>
+
+</body>
+
+</html>
