@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.getElementsByTagName("button");
+
+            let currentSymbol = "X";
+
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", function () {
+                    if (buttons[i].textContent === "") {
+                        buttons[i].textContent = currentSymbol;
+                    }
+
+                    if (currentSymbol == "X") {
+                        currentSymbol = "O";
+                    } else {
+                        currentSymbol = "X";
+                    }
+                })
+            }
+
+        })
+    </script>
+</head>
+
+<body>
+    <main>
+        <div>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+        </div>
+        <div>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+        </div>
+        <div>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+        </div>
+    </main>
+
+</body>
+
+</html>

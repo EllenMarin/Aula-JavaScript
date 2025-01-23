@@ -2,7 +2,8 @@
 papel vence pedra, pedra vence tesoura, tesoura vence papel*/
 document.addEventListener("DOMContentLoaded", function(){
     const buttons = document.getElementsByTagName("button");
-    const cpuChoice = "Tesoura";
+    //const cpuChoice = "Tesoura";
+    const arrayCpuChoice = ["Pedra", "Papel", "Tesoura"];
 
     const player = document.getElementById("player");
     const cpu = document.getElementById("cpu");
@@ -12,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function(){
         buttons[i].addEventListener("click", function(){
 
             const playerChoice = buttons[i].textContent;
+
+            let randomPlay = Math.floor(Math.random() * arrayCpuChoice.length );
+            const cpuChoice = arrayCpuChoice[randomPlay];
+            
             
              if(cpuChoice === playerChoice){
                result.textContent = "Empatou";
@@ -34,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
              player.textContent = playerChoice;
              cpu.textContent = cpuChoice;
+
+
              
         })
     }

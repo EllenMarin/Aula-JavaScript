@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            const users = [
+                {
+                    username: "JoelCruz10090",
+                    password: "k29dJC82828"
+                },
+                {
+                    username: "CristinaBrito",
+                    password: "1030CR789"
+                },
+                {
+                    username: "VanessaSousa",
+                    password: "VS9392dls"
+                },
+                {
+                    username: "MariaRita",
+                    password: "pass93939"
+                }
+            ];
+
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                let userLogged = false;
+
+                for (let i = 0; i < users.length; i++) {
+                    if (form.username.value === users[i].username && form.password.value === users[i].password) {
+
+                        userLogged = true;
+                        alert("Bem vindo " + form.username.value);
+                    }
+                }
+
+                if (userLogged === false) {
+                    alert("Dados incorretos")
+                }
+                /*if (form.username.value === user.username && form.password.value === user.password) {
+                    alert("Bem vindo " + form.username.value);
+                } else {
+                    alert("Dados incorretos")
+                }*/
+                console.log(form.username.value);
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <form action="login.html" method="post">
+        <h1>Faça seu login</h1>
+        <div>
+            <label>Nome completo:
+                <input name="username" type="text" placeholder="Seu Nome" required>
+            </label>
+        </div>
+        <div>
+            <label>Password:
+                <input name="password" type="password" placeholder="Sua Password" required>
+            </label>
+        </div>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+
+</body>
+
+</html>

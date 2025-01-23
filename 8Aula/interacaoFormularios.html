@@ -13,11 +13,11 @@
             /*Eventos para trabalhar com formulários:
             -> onfocus
             ->onblur
-            ->onchanche
+            ->onchange
             ->onsubmit
             */
             form.addEventListener("submit", function (event) {
-                event.preventDefault();//previne o comportamento padrao (ler o method e o action e sair da pagina)
+                event.preventDefault();//previne o comportamento padrao (ler o method e o action do form e saí da pagina)
 
                 console.log("formulario submetido!")
 
@@ -28,6 +28,12 @@
                 //confirmar password
                 if (form.password.value !== form.password_confirm.value) {
                     console.log("Digitou mal password")
+                }
+                if (form.name.value === "") {
+                    alert("Digite seu nome completo");
+                }
+                if (form.email.value === "") {
+                    alert("Digite seu email")
                 }
 
             })

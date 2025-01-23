@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        /*JSON transforma um array em texto
+        JSON.stringify converter para string
+        JSON.parse desconverter para array
+        
+        */
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const countries = [
+                {
+                    name: "Portugal",
+                    capital: "Lisboa",
+                    population: 100000
+                },
+                {
+                    name: "Espanha",
+                    capital: "Madrid",
+                    population: 4600000
+                },
+                {
+                    name: "Brasil",
+                    capital: "Brasilia",
+                    population: 20000000
+                },
+                {
+                    name: "França",
+                    capital: "Paris",
+                    population: 10000000
+                }
+            ];
+            console.log(countries[1].name)
+
+            const countriesJSON = JSON.stringify(countries); //converter em texto
+            console.log(countriesJSON);
+
+            //localStorage e sessionStorage só conseguem guardar no browser texto/string
+
+            sessionStorage["countries"] = countriesJSON;
+
+            const countriesParsed = JSON.parse(countries); // desconverter para array
+        })
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

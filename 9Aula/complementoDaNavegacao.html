@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação do DOM</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const list = document.getElementById("list");
+            const p = document.getElementById("text");
+            const btnRemove = document.getElementById("btnRemove")
+
+            //criar novos elementos
+            list.appendChild(document.createElement("li")).textContent = "Item 03";
+            list.appendChild(document.createElement("li")).textContent = "Item 04";
+
+            //remover elementos
+            p.lastElementChild.remove();
+
+            btnRemove.addEventListener("click", function () {
+                btnRemove.parentElement.remove();
+            })
+
+
+        })
+    </script>
+</head>
+
+<body>
+    <ul id="list">
+        <li>Item 01</li>
+        <li>Item 02</li>
+    </ul>
+    <p id="text">Lorem ipsum dolor sit amet <em>consectetur</em> adipisicing elit. Nesciunt, iusto.</p>
+    <div>
+        <button type="button" id="btnRemove">Remover DIV</button>
+    </div>
+
+
+</body>
+
+</html>

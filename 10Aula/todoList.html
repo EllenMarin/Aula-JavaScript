@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO list</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        /*exercicio:
+        -> Interagir com o formulario
+        -> Capturar o preenchimento pelo utilizador no campo
+        -> Manipular a lista para acrescentar novos lis com cada uma da novas tarefas
+        */
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("form");
+            const list = document.getElementById("list");
+            let taskList = [];//ainda está vazio
+
+            //ver se tem algo no localstorage, parsear a informação criando umarray e mostarr no browser
+            if (localStorage["tasks"]) {//se tem algo no localstorage
+                taskList = JSON.parse(localStorage["tasks"]);
+
+                console.log(taskList);
+            }
+            for (let i = 0; i < taskList.length; i++) {
+                //por cada tarefa criar um appendChild LI novo
+                list.appendChild(document.createElement("li")).textContent = taskList[i];
+            }
+
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                console.log(form.task.value)
+
+                list.appendChild(document.createElement("li")).textContent = form.task.value;
+
+                taskList.push(form.task.value);//empurrar la para dentro
+                console.log(taskList);
+
+                const tasksListJSON = JSON.stringify(taskList);
+                localStorage["tasks"] = tasksListJSON;
+                console.log(tasksListJSON)
+
+
+            })
+
+            console.log(form);
+        })
+    </script>
+</head>
+
+<body>
+
+    <div>
+        <form action="todoList.html" method="post" id="form">
+            <label>Nova tarefa
+                <input type="text" name="task" placeholder="Nova tarefa" autofocus required>
+            </label>
+            <button type="submit">Adicionar</button>
+        </form>
+        <ol id="list">
+
+        </ol>
+    </div>
+
+
+</body>
+
+</html>

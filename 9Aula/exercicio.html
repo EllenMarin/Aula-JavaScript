@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const list = document.getElementById("list")
+
+            let Item = 0;
+            let incresasing = true;
+
+
+            setInterval(function () {
+
+                if (incresasing) {
+                    if (Item < 10) {
+                        list.appendChild(document.createElement("li")).textContent = "Item " + Item;
+
+                        Item++;
+                    } else {
+                        incresasing = false;
+                    }
+                } else {
+                    if (Item > 0) {
+                        list.lastElementChild.remove();
+
+                        Item--;
+                    }
+                    else {
+                        incresasing = true;
+                    }
+                }
+            }, 1000)
+        })
+    </script>
+</head>
+
+<body>
+    <ul id="list"></ul>
+
+</body>
+
+</html>

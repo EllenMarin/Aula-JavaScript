@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navegação no DOM</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const list = document.getElementById("list");
+
+            //console.log(list.firstElementChild);
+            //console.log(list.lastElementChild);
+            //console.log(list.firstElementChild.nextElementSibling);
+
+            console.log(list.children[2].textContent);
+            console.log(list.children[0], list.children[2].nodeName); //nodeName mostra qual elelmento html é
+
+            console.log(list.children[3].lastElementChild.children[1].lastElementChild.lastElementChild.lastElementChild)
+        })
+    </script>
+</head>
+
+<body>
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4
+            <ul>
+                <li>SubItens 1</li>
+                <li>SubItens 2
+                    <ul>
+                        <li>SubSubItem 1</li>
+                        <li>SubSubItem 2 <span>Cath me if you can</span></li>
+                    </ul>
+                </li>
+                <li>SubItens 3</li>
+            </ul>
+        </li>
+        <li>Item 5</li>
+    </ul>
+
+</body>
+
+</html>
