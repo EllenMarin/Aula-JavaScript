@@ -39,9 +39,11 @@
                 taskList.push(form.task.value);//empurrar la para dentro
                 console.log(taskList);
 
-                const tasksListJSON = JSON.stringify(taskList);
+                const tasksListJSON = JSON.stringify(taskList); //guardar no storage
                 localStorage["tasks"] = tasksListJSON;
                 console.log(tasksListJSON)
+
+                form.task.value = "";//limpar o input
 
 
             })
