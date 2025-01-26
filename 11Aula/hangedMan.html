@@ -7,25 +7,34 @@
     <title>HAnged man - jogo da forca</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+
 </head>
 
 <body>
-    <main>
-        <div id="gameArea">
-
-        </div>
-        <form action="hangedMan.html" method="post">
-            <div>
-                <label>Letra
-                    <input type="text" name="letter" required maxlength="1">
-                </label>
-                <button type="submit">Escolher</button>
-            </div>
-        </form>
+    <div id="confetti"></div>
+    <span id="congrats"></span>
+    <span id="gameOver"></span>
+    <section>
         <div>
-            <h2>Ainda tem <span id="attemptsNumber"></span> tentativas</h2>
+            <img src="img/img1.png" alt="" width="200px">
         </div>
-    </main>
+        <main>
+            <div id="gameArea">
+
+            </div>
+            <form action="hangedMan.html" method="post">
+                <div>
+                    <label>Letra
+                        <input type="text" name="letter" required maxlength="1">
+                    </label>
+                    <button type="submit">Escolher</button>
+                </div>
+            </form>
+            <div>
+                <h2 id="attemptsNumber">Tem 6 tentativas</h2>
+            </div>
+        </main>
+    </section>
 
 </body>
 
