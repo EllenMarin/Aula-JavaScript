@@ -73,8 +73,6 @@
         }
         //Criar um sistema de tentativas começa em 6 cada vez que o utilizador errar perde
         
-        console.log("Antes do ciclo: " + attempts)
-
         if(isCorrect === false){
             attempts--;
             attemptsNumber.textContent = "Ainda tem " + attempts + " tentativas";
@@ -85,15 +83,12 @@
             gameOver.textContent = "GAME OVER! Tente de novo";
 
             gameOver.style.display = "block"; 
-            console.log(gameOver)
 
             setTimeout(() => {
                 window.location.reload();
             }, 6000)
         }
-
-        console.log("Depois do ciclo: " + attempts)
-
+        
         if(attempts === 5){
             img.src = "img/img2.png";
             img.width = 200;
