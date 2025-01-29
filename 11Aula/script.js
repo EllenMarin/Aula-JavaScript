@@ -134,7 +134,7 @@
             createFallingRibbons();
 
             // Recarregar a página após 6 segundos
-            setTimeout(() => {
+            setTimeout(function() {
                 window.location.reload();
             }, 6000);
         }

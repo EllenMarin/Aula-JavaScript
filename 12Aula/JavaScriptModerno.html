@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Moderno</title>
+    <script>
+        /*Arrow function = conjunto de açoes que serão executadas
+        chr.onload = () => {}
+        
+        com arrow function não se utiliza o this dentro da função(o comportamento nao é o mesmo, quando o this esta dentro de uma função)
+        */
+        document.addEventListener("DOMContentLoaded", () => {
+            const div = document.querySelector("div")
+
+            div.addEventListener("click", () => {
+                div.textContent = "Arrow function";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div>Lorem ipsum dolor sit amet consectetur assumenda animi debitis.</div>
+
+</body>
+
+</html>

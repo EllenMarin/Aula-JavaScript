@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicação de chat</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+            const chatBox = document.getElementById("chatBox");
+            const userName = "Ellen Marin";
+
+            const bots = [
+                {
+                    name: "Fernando Pessoa",
+                    messages: [
+                        "Amo como ama o amor. Não conheço nenhuma outra razão para amar senão amar. Que queres que te diga, além de que te amo, se o que quero dizer-te é que te amo?",
+                        "Às vezes ouço passar o vento; e só de ouvir o vento passar, vale a pena ter nascido",
+                        "Tudo vale a pena quando a alma não é pequena."]
+                },
+                {
+                    name: "A Fada Azul - Pinóquio",
+                    messages: [
+                        "Não sabe o que fazer? Qual caminho seguir? Não se desespere!",
+                        "Siga o valioso conselho da Fada Azul: feche os olhos e ouça aquela vozinha que ecoa no interior do seu corpo. ",
+                        "Esta voz é a sua consciência e ela nunca te enganará!"]
+                },
+                {
+                    name: "Rainha Branca - Alice no País das Maravilhas",
+                    messages: [
+                        "Você não pode viver a vida para agradar os outros. A escolha tem que ser sua",
+                        "Nós só temos uma vida e devemos vivê-la! Não conduza os caminhos da sua vida consoante os desejos alheios. Tenha planos, tenha desejos e corra atrás deles!",
+                        "A vida é sua e cabe a você conduzi-la!"]
+                },
+            ]
+
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                /*Cada vez que voces digitarem um texto no formulraio vai ser inserido
+                <dt>Vosso nome</dt>
+                <dd>[hora:minuto:segundo]Mensagem</dd>*/
+                chatBox.appendChild(document.createElement("dt")).textContent = userName;
+
+                chatBox.appendChild(document.createElement("dd")).textContent = "[" + new Date().toLocaleTimeString() + "] - " + form.message.value;
+                form.message.value = "";
+
+
+                setTimeout(function () {
+                    const botSelected = bots[Math.floor(Math.random() * bots.length)];
+                    const botSelectedMessage = botSelected.messages[Math.floor(Math.random() * botSelected.messages.length)];
+
+                    chatBox.appendChild(document.createElement("dt")).textContent = botSelected.name;
+                    chatBox.appendChild(document.createElement("dd")).textContent = "[" + new Date().toLocaleTimeString() + "] - " + botSelectedMessage;
+                }, 1000)
+
+
+
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <main>
+        <dl id="chatBox"></dl>
+        <form action="exercicioChat.html" method="post">
+            <div>
+                <label>
+                    <input type="text" name="message" required>Escreva algo
+                </label>
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </main>
+
+</body>
+
+</html>
