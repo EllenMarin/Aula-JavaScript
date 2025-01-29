@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX: invocação de ficheiro JSON local</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const list = document.getElementById("list");
+
+            fetch("./posts.json")
+                .then(response => response.json())
+                .then(result => {
+                    for (let i = 0; i < result.length; i++) {
+                        list.appendChild(document.createElement("li")).textContent = result[i].title;
+
+                    }
+                    console.log(result)
+                })
+        })
+        /*Com os dados da api interna fazer um blog com os posts*/
+    </script>
+</head>
+
+<body>
+    <ul id="list">
+
+    </ul>
+
+</body>
+
+</html>

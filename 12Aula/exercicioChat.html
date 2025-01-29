@@ -12,6 +12,19 @@
             const chatBox = document.getElementById("chatBox");
             const userName = "Ellen Marin";
 
+            /*Refaturing*/
+            const writeMessage = (name, message) => {
+
+                const currentTime = new Date().toLocaleTimeString();
+
+                chatBox.appendChild(document.createElement("dt")).textContent = name;
+
+                chatBox.appendChild(document.createElement("dd")).textContent = "[" + currentTime + "] - " + message;
+
+                chatBox.scrollTo(0, chatBox.scrollHeight);//conforme os chats vao aumentando e tomando a altura inteira da pagina, empurra o scroll automaticamente
+
+            }
+
             const bots = [
                 {
                     name: "Fernando Pessoa",
@@ -37,28 +50,32 @@
             ]
 
 
+            setInterval(() => {
+                /*criar um numero aleatorio de 1 a 10
+                se for um em 10( de dez posssibilidase, apenas uma serve)
+                exemplo: se for 7 e apenas 7 é que aparece a mensagem de um bot*/
+                const randomNumber = Math.ceil(Math.random() * 10)
+                if (randomNumber === 7) {
+                    const botSelected = bots[Math.floor(Math.random() * bots.length)];
+                    const botSelectedMessage = botSelected.messages[Math.floor(Math.random() * botSelected.messages.length)];
+
+                    writeMessage(botSelected.name, botSelectedMessage);
+                    console.log(randomNumber)
+                }
+
+            }, 300)
+
+
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
 
                 /*Cada vez que voces digitarem um texto no formulraio vai ser inserido
                 <dt>Vosso nome</dt>
                 <dd>[hora:minuto:segundo]Mensagem</dd>*/
-                chatBox.appendChild(document.createElement("dt")).textContent = userName;
 
-                chatBox.appendChild(document.createElement("dd")).textContent = "[" + new Date().toLocaleTimeString() + "] - " + form.message.value;
+                writeMessage(userName, form.message.value);
+
                 form.message.value = "";
-
-
-                setTimeout(function () {
-                    const botSelected = bots[Math.floor(Math.random() * bots.length)];
-                    const botSelectedMessage = botSelected.messages[Math.floor(Math.random() * botSelected.messages.length)];
-
-                    chatBox.appendChild(document.createElement("dt")).textContent = botSelected.name;
-                    chatBox.appendChild(document.createElement("dd")).textContent = "[" + new Date().toLocaleTimeString() + "] - " + botSelectedMessage;
-                }, 1000)
-
-
-
             })
         })
     </script>
