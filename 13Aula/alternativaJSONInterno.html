@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX: invocação de ficheiro JSON local</title>
+    <style>
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .card {
+            width: calc(33.33% - 20px);
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            margin: 10px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            margin: 8px 0 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const list = document.getElementById("list");
+            const cardsContainer = document.querySelector(".cards");
+
+            fetch("./posts.json")
+                .then(response => response.json())
+                .then(result => {
+                    result.forEach(post => {
+                        const card = document.createElement("div");
+                        card.classList.add("card");
+
+                        const image = document.createElement("img");
+                        image.src = `https://picsum.photos/300/200?random=${post.id}`;
+                        image.alt = "Imagem do post";
+                        image.classList.add("post-image");
+
+                        const titleCard = document.createElement("h2");
+                        titleCard.textContent = post.title;
+
+                        const bodyCard = document.createElement("p");
+                        bodyCard.textContent = post.body;
+
+                        card.appendChild(image);
+                        card.appendChild(titleCard);
+                        card.appendChild(bodyCard);
+
+                        cardsContainer.appendChild(card);
+                    });
+
+                    console.log("Posts carregados!");
+                })
+                .catch(error => console.error("Erro ao carregar os posts:", error));
+        });
+    </script>
+</head>
+
+<body>
+    <!--<ul id="list">-->
+    <h1>Blog</h1>
+    </ul>
+    <div class="cards">
+
+    </div>
+
+</body>
+
+</html>
