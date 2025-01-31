@@ -25,8 +25,12 @@
                 console.log(taskList);
             }
             for (let i = 0; i < taskList.length; i++) {
+                const buttonList = document.createElement("button").textContent = "Enviar";
                 //por cada tarefa criar um appendChild LI novo
-                list.appendChild(document.createElement("li")).textContent = taskList[i];
+                list.appendChild(document.createElement("li")).textContent = taskList[i] + buttonList;
+
+
+                console.log(li);
             }
 
 
@@ -48,7 +52,8 @@
 
             })
 
-            console.log(form);
+
+
         })
     </script>
 </head>

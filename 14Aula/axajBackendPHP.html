@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX a invocar backend (php)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        dl {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+        }
+
+        dt {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        dd {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            margin-left: 0;
+        }
+
+        #timer {
+            font-size: 2rem;
+            color: #e74c3c;
+        }
+
+        #price {
+            font-size: 2rem;
+            color: #2ecc71;
+        }
+    </style>
+    <script>
+        setInterval(() => {
+            fetch("requests.php?request=auction")//"requests.php?queryparameter"
+                .then(response => response.json())
+                .then(result => {
+
+                    const timer = document.getElementById("timer");
+                    const price = document.getElementById("price");
+
+                    timer.textContent = result.timer;
+                    price.textContent = result.price;
+
+                    console.log(result)
+
+                });
+        }, 1000)
+        /*com o resultado da incvocação de ajax, mostrar na pagina os valores de timer e price actuais*/
+
+    </script>
+</head>
+
+<body>
+    <h1>Leilão de Ultra Artigo</h1>
+    <dl>
+        <dt>Tempo que falta</dt>
+        <dd id="timer"></dd>
+        <dt>Licitação atual</dt>
+        <dd id="price"></dd>
+    </dl>
+
+</body>
+
+</html>

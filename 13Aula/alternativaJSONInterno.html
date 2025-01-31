@@ -22,6 +22,8 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
             background-color: #fff;
             margin: 10px;
+            position: relative;
+            overflow: hidden;
         }
 
         .post-image {
@@ -38,10 +40,27 @@
         .card p {
             margin: 8px 0 0;
         }
+
+        .idCard {
+            position: absolute;
+            top: 25px;
+            left: 15px;
+            background: #FFF;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            width: 42px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 5px 5px 0;
+            /*box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);*/
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const list = document.getElementById("list");
+            //const list = document.getElementById("list");
             const cardsContainer = document.querySelector(".cards");
 
             fetch("./posts.json")
@@ -53,7 +72,7 @@
 
                         const image = document.createElement("img");
                         image.src = `https://picsum.photos/300/200?random=${post.id}`;
-                        image.alt = "Imagem do post";
+                        image.alt = post.title;
                         image.classList.add("post-image");
 
                         const titleCard = document.createElement("h2");
@@ -62,14 +81,19 @@
                         const bodyCard = document.createElement("p");
                         bodyCard.textContent = post.body;
 
+                        const idCard = document.createElement("span")
+                        idCard.textContent = post.id;
+                        idCard.classList.add("idCard");
+
+                        card.appendChild(idCard);
                         card.appendChild(image);
                         card.appendChild(titleCard);
                         card.appendChild(bodyCard);
 
                         cardsContainer.appendChild(card);
+                        console.log(post);
                     });
 
-                    console.log("Posts carregados!");
                 })
                 .catch(error => console.error("Erro ao carregar os posts:", error));
         });
