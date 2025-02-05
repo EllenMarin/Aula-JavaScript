@@ -39,16 +39,8 @@
 <head>
     <meta charset="utf-8">
     <title>Carrinho</title>
+    <link rel="stylesheet" href="15Aula/shop/style/cart.css">
 
-    <style>
-    table,
-    tr,
-    th,
-    td {
-        border: 1px solid #000;
-        border-collapse: collapse;
-    }
-    </style>
 </head>
 
 <body>
