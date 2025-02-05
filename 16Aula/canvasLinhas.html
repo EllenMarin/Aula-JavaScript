@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas: Linhas</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.querySelector("canvas").getContext("2d");
+
+            /*
+            Começar uma linha
+            */
+            canvas.beginPath();
+            //canvas.moveTo(x, y); definir apenas posição horizontal, vertical = o tamanho da linha
+            //canvas.lineTo(); arrastar para direção onde quero que a linha vai
+
+            canvas.strokeStyle = "#00F";
+            canvas.moveTo(300, 300);
+            canvas.lineTo(400, 300);
+
+            canvas.moveTo(400, 300);
+            canvas.lineTo(350, 200);
+
+            canvas.lineTo(300, 300);
+
+            canvas.stroke();
+        })
+    </script>
+</head>
+
+<body>
+    <canvas width="800" height="800"></canvas>
+</body>
+
+</html>

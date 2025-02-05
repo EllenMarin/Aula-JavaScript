@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas: formas retangulares</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const canvas = document.querySelector("canvas").getContext("2d");
+            /*
+            fill == Preenchimento 
+            stroke == contornos
+            */
+            //canvas.fillRect(x, y, w, h) horizontal, vertical, largura, altura
+            canvas.fillStyle = "#00F";
+            canvas.fillRect(200, 200, 150, 150);
+            canvas.fillStyle = "#0FF";
+            canvas.fillRect(360, 200, 150, 150);
+            canvas.strokeStyle = "#09F"
+            canvas.strokeRect(200, 360, 150, 150);
+            canvas.strokeStyle = "#00F";
+            canvas.strokeRect(360, 360, 150, 150);
+        })
+    </script>
+    <style>
+        canvas {
+            outline: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="800" height="800"></canvas>
+
+</body>
+
+</html>

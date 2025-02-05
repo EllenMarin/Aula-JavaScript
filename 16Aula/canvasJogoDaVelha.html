@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.querySelector("canvas").getContext("2d");
+
+            canvas.beginPath();
+            canvas.moveTo(0, 200);
+            canvas.lineTo(600, 200);
+
+            canvas.moveTo(0, 400);
+            canvas.lineTo(600, 400);
+
+            canvas.moveTo(200, 0);
+            canvas.lineTo(200, 600);
+
+            canvas.moveTo(400, 0);
+            canvas.lineTo(400, 600);
+
+            canvas.moveTo(200, 200);
+            canvas.lineTo(400, 400);
+            canvas.moveTo(400, 200);
+            canvas.lineTo(200, 400);
+
+            canvas.stroke();
+
+        })
+    </script>
+    <style>
+        canvas {
+            outline: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="600"></canvas>
+
+</body>
+
+</html>
