@@ -45,12 +45,21 @@
 document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.getElementsByTagName("button");
 
+    function updateTotalPrice(){
+        /*calcular totoal final, selecionar todos os subtotais */
+        var total = 0;
+            const subtotals = document.querySelectorAll(".subtotal");
+            for(let subtotal of subtotals){
+                total = total + Number(subtotal.textContent);//cast
+            }
+            document.getElementById("total").textContent = total.toFixed(2);
+        
+    }
+
     for (let button of buttons) {
 
         button.addEventListener("click", () => {
             const tr = button.parentElement.parentElement;
-
-            console.log(tr.dataset.product_id);
 
             fetch("requests.php", {
                     method: "POST",
@@ -60,7 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: "request=removeProduct&product_id=" + tr.dataset.product_id
                 })
                 .then(response => response.json())
-                .then(result => tr.remove());
+                .then(result => {
+                    tr.remove();
+                    updateTotalPrice();
+                });
 
         });
     }
@@ -70,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let input of inputs) {
 
         input.addEventListener("change", () => {
-            console.log(input.value)
             const tr = input.parentElement.parentElement;
             const product_id = tr.dataset.product_id;
 
@@ -84,9 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(response => response.json())
                 .then(result => {
                     
-                    console.log(input.value * tr.dataset.price)//conta do subtotal
                     //falta mostrar essa informação na página
-
+                    const subtotal = (input.value * tr.dataset.price).toFixed(2);
+                    tr.children[3].firstElementChild.textContent = subtotal;
+                    
+                    updateTotalPrice();
                 });
         })
     }
@@ -131,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </td>
                     <td>' .$item["price"]. '€</td>
                     <td>
-                        <span> ' .$subtotal. '</span> 
+                        <span class="subtotal"> ' .$subtotal. '</span> 
                     €</td>
                     <td> 
                         <button type="button"> X </button>
@@ -142,8 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 ?>
         <tr>
-            <td colspan="3"></td>
-            <td colspan="2"><?php echo $total; ?>€</td>
+            <td colspan="3">TOTAL</td>
+            <td colspan="2" > <span id="total"> <?php echo $total; ?> </span> €</td>
         </tr>
     </table>
     <?php

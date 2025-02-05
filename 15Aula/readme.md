@@ -11,7 +11,7 @@ ex.
 
 </tr>
 -//
-Para se aceder a um data field = dataset
+Para se aceder a um data field -> dataset
 ex.
     console.log(tr.dataset.product_id);
 -//
