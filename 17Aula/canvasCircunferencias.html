@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circunferências</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.querySelector("canvas").getContext("2d");
+            const btnAddBol = document.querySelector("#btnAddBol");
+
+            let bols = [
+                {
+                    x: 40,
+                    y: 410,
+                    dx: 5,
+                    dy: 5,
+                    color: "#00f",
+                    r: 15,
+                },
+            ]
+            /*Qaundo se clica no botao é acrescentado ao array de bolas umma nova com valores aleatórios em todas as prorpiedades (x,y,r,color,dx,dy) floor * 10 */
+            function ramdomNumber(max) {
+                return Math.ceil(Math.random() * max)
+            }
+
+            function ramdomColor() {
+                return Math.ceil(Math.random() * 255);
+            }
+
+
+            btnAddBol.addEventListener("click", () => {
+                bols.push(
+                    {
+                        x: ramdomNumber(900),
+                        y: ramdomNumber(900),
+                        dx: ramdomNumber(10),
+                        dy: ramdomNumber(10),
+                        color: "rgb(" + ramdomColor() + "," + ramdomColor() + "," + ramdomColor() + ")",
+                        r: ramdomNumber(100),
+                    }
+                );
+            })
+
+            setInterval(() => {
+                canvas.clearRect(0, 0, 900, 900);//limpar o ultimo keyframe
+
+                for (let i = 0; i < bols.length; i++) {
+
+                    canvas.beginPath();//Abrir
+                    //canvas.arc(x, y, r, inicio, Math.PI * 2);
+                    canvas.arc(bols[i].x, bols[i].y, bols[i].r, 0, Math.PI * 2);//criar o circulo
+
+                    canvas.fillStyle = bols[i].color;
+                    canvas.fill();//Fechar
+
+                    if (bols[i].x <= 0 || bols[i].x >= 900) {
+                        bols[i].dx = -bols[i].dx;
+                    }
+                    if (bols[i].y <= 0 || bols[i].y >= 900) {
+                        bols[i].dy = -bols[i].dy
+                    }
+                    bols[i].x += bols[i].dx;
+                    bols[i].y += bols[i].dy;
+
+                }
+            }, 10)
+
+        })
+
+    </script>
+</head>
+
+<body>
+
+    <div>
+        <button id="btnAddBol">Add New</button>
+    </div>
+    <canvas width="900" height="900"></canvas>
+</body>
+
+</html>

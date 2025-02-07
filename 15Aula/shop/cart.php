@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 ?>
         <tr>
             <td colspan="3">TOTAL</td>
-            <td colspan="2" > <span id="total"> <?php echo $total; ?> </span> €</td>
+            <td colspan="2"> <span id="total"> <?php echo $total; ?> </span> €</td>
         </tr>
     </table>
     <?php
