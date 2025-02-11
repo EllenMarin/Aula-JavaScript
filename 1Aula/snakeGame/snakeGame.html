@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=play_arrow" />
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let canvas = document.querySelector("canvas");
+            let canvasCtx = canvas.getContext("2d");
+
+            const score = document.querySelector(".score");
+            const scoreValue = document.querySelector(".score-value");
+            const finalScore = document.querySelector(".final-score > span");
+            const menuScreen = document.querySelector(".menu-screen");
+            const btnPlay = document.querySelector(".btn-play");
+
+            const audioEat = new Audio("./snake/audio/eat.mp3");
+
+            /*canvas.fillStyle = "#f00";
+            canvas.fillRect(40, 40, 50, 50);*/
+            const size = 30;
+
+            const initialPosition =
+            {
+                x: 300,
+                y: 300,
+            }
+
+            let snake = [initialPosition];
+
+            function incrementScore() {
+                scoreValue.textContent = +scoreValue.textContent + 10;
+            }
+
+            function randomNumber(min, max) {
+                return Math.round(Math.random() * (max - min) + min)
+            }
+            function randomPosition() {
+                const number = randomNumber(0, canvas.width - size)
+                return Math.round(number / 30) * 30
+            }
+            const food = {
+                x: randomPosition(),
+                y: randomPosition(),
+                color: "rgb(" + randomNumber(0, 255) + "," + randomNumber(0, 255) + "," + randomNumber(0, 255) + ")"
+            }
+
+            function checkEat() {
+                const head = snake[snake.length - 1];
+                if (head.x == food.x && head.y == food.y) {
+                    snake.push(head);
+                    audioEat.play();
+                    incrementScore();
+
+                    let x = randomPosition();
+                    let y = randomPosition();
+
+                    while (snake.find((position) => position.x == x && position.y == y)) {
+                        x = randomPosition();
+                        y = randomPosition();
+                    }
+                    food.x = x;
+                    food.y = y;
+                    food.color = "rgb(" + randomNumber(0, 255) + "," + randomNumber(0, 255) + "," + randomNumber(0, 255) + ")"
+
+                }
+            }
+
+            let direction, loopId
+
+            function drawFood() {
+                canvasCtx.shadowColor = food.color;
+                canvasCtx.shadowBlur = 9;
+                canvasCtx.fillStyle = food.color;
+                canvasCtx.fillRect(food.x, food.y, size, size);
+                canvasCtx.shadowBlur = 0;
+            }
+            drawFood();
+
+            function drawSnake() {
+                canvasCtx.fillStyle = "#ddd";
+
+                snake.forEach((position, index) => {
+
+                    if (index == snake.length - 1) {
+                        canvasCtx.fillStyle = "#fff";
+                    }
+                    canvasCtx.fillRect(position.x, position.y, size, size);
+
+                });
+
+            }
+
+            function moveSnake() {
+
+                if (!direction) return;
+                const head = snake[snake.length - 1];
+
+                if (direction == "right") {
+                    snake.push(
+                        {
+                            x: head.x + size,
+                            y: head.y,
+                        }
+                    )
+                }
+                if (direction == "left") {
+                    snake.push(
+                        {
+                            x: head.x - size,
+                            y: head.y,
+                        }
+                    )
+                }
+                if (direction == "up") {
+                    snake.push(
+                        {
+                            x: head.x,
+                            y: head.y - size,
+                        }
+                    )
+                }
+                if (direction == "down") {
+                    snake.push(
+                        {
+                            x: head.x,
+                            y: head.y + size,
+                        }
+                    )
+                }
+                snake.shift()
+            }
+
+
+            function drawGrid() {
+                canvasCtx.lineWidth = 1;
+                canvasCtx.strokeStyle = "#333";
+
+                for (let i = 30; i < 600; i += 30) {
+                    canvasCtx.beginPath();
+                    canvasCtx.lineTo(i, 0);
+                    canvasCtx.lineTo(i, 600);
+                    canvasCtx.stroke();
+                }
+                for (let i = 30; i < 600; i += 30) {
+                    canvasCtx.beginPath();
+                    canvasCtx.moveTo(0, i);
+                    canvasCtx.lineTo(600, i);
+                    canvasCtx.stroke();
+                }
+            }
+            drawGrid();
+
+            function checkColission() {
+                const head = snake[snake.length - 1]
+                const canvasLimit = canvas.width - size;
+
+                const neckIndex = snake.length - 2;
+                const wallColission = head.x < 0 || head.x > canvasLimit || head.y < 0 || head.y > canvasLimit;
+                const selfColission = snake.find((position, index) => {
+                    return index < neckIndex && position.x == head.x && position.y == head.y;
+                })
+
+                if (wallColission || selfColission) {
+                    gameOver();
+                }
+            }
+
+            function gameOver() {
+                position = undefined;
+                menuScreen.style.display = "flex";
+                finalScore.textContent = scoreValue.textContent;
+                score.style.display = "none";
+            }
+
+            let gameSpeed = 300;
+
+            function gameLoop() {
+                clearInterval(loopId)
+                canvasCtx.clearRect(0, 0, 600, 600)
+
+                drawFood();
+                drawGrid();
+                moveSnake();
+                drawSnake();
+                checkEat();
+                checkColission();
+                gameSpeed = Math.max(50, gameSpeed - 0.5);
+
+                loopId = setTimeout(() => {
+                    gameLoop();
+                }, gameSpeed)
+            }
+            gameLoop();
+
+            document.addEventListener("keydown", ({ key }) => {
+                if (key == "ArrowRight" && direction != "left") {
+                    direction = "right"
+                }
+                if (key == "ArrowLeft" && direction != "right") {
+                    direction = "left"
+                }
+                if (key == "ArrowUp" && direction != "down") {
+                    direction = "up"
+                }
+                if (key == "ArrowDown" && direction != "up") {
+                    direction = "down"
+                }
+            })
+            console.log(gameSpeed)
+            btnPlay.addEventListener("click", () => {
+                scoreValue.textContent = "00";
+                menuScreen.style.display = "none";
+
+                snake = [initialPosition]
+
+                gameSpeed = 300;
+
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+    <div class="score">Score:
+        <span class="score-value">00</span>
+    </div>
+    <div class="menu-screen">
+        <span class="game-over">Game Over</span>
+        <span class="final-score">Score: <span>00</span></span>
+
+        <button class="btn-play">
+            <span class="material-symbols-outlined">
+                play_arrow
+            </span>
+            Jogar Novamente
+        </button>
+    </div>
+    <canvas width="600" height="600"></canvas>
+
+</body>
+
+</html>

@@ -12,6 +12,7 @@
 
             const colorPicker = document.getElementById("colorPicker");
             const linePicker = document.getElementById("linePicker");
+            const eraseDrawing = document.getElementById("eraseDrawing");
             const resetBtn = document.getElementById("resetBtn");
 
             linePicker.addEventListener("change", () => {
@@ -21,6 +22,10 @@
             colorPicker.addEventListener("change", () => {
                 let atualColor = colorPicker.value;
                 canvasCtx.strokeStyle = atualColor;
+            })
+            eraseDrawing.addEventListener("change", () => {
+                canvasCtx.lineWidth = eraseDrawing.value;
+                canvasCtx.strokeStyle = "#fff";
             })
 
             resetBtn.addEventListener("click", () => {
@@ -111,9 +116,9 @@
             </label>
             <label>Borracha
                 <select id="eraseDrawing">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    <option>12</option>
+                    <option>14</option>
+                    <option>16</option>
                 </select>
             </label>
             <button type="button" id="resetBtn"> Apagar tudo</button>

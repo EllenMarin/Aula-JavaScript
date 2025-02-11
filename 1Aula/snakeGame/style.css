@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+canvas {
+    /*border: solid 1px #000;*/
+    background-color: #111;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #111;
+    /*background-image: url("./snake/img/72174.jpg");*/
+    color: #fff;
+    position: relative;
+}
+/*body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0, 0.8);  Cor preta com 50% de opacidade 
+    z-index: -1;  Mantém o overlay no fundo 
+}*/
+
+.score {
+    font-size: 54px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.score-value {
+    color: #4caf50;
+}
+.menu-screen {
+    position: absolute;
+    display: none;  /*Escondido por padrão */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.menu-screen .game-over {
+    text-transform: uppercase;
+    font-size: 52px;
+    font-weight: bold;
+    color: #ff4c4c;
+    margin-bottom: 10px;
+}
+
+.menu-screen .final-score {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-play {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.btn-play:hover {
+    background-color: #45a049;
+}
+
+.material-symbols-outlined {
+    font-size: 28px;
+}
