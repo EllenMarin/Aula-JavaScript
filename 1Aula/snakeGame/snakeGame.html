@@ -19,6 +19,21 @@
             const menuScreen = document.querySelector(".menu-screen");
             const btnPlay = document.querySelector(".btn-play");
 
+            /*btn mobile*/
+            document.querySelectorAll('.control-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (button.classList.contains('up') && direction != "down") {
+                        direction = "up";
+                    } else if (button.classList.contains('down') && direction != "up") {
+                        direction = "down";
+                    } else if (button.classList.contains('left') && direction != "right") {
+                        direction = "left";
+                    } else if (button.classList.contains('right') && direction != "left") {
+                        direction = "right";
+                    }
+                });
+            });
+
             const audioEat = new Audio("./snake/audio/eat.mp3");
 
             /*canvas.fillStyle = "#f00";
@@ -222,6 +237,44 @@
                 gameSpeed = 300;
 
             })
+            /*controles mobile*/
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                e.preventDefault(); // Prevents scrolling while playing
+            });
+
+            document.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+
+                // Determine swipe direction based on which delta is larger
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    // Horizontal swipe
+                    if (deltaX > 0 && direction != "left") {
+                        direction = "right";
+                    } else if (deltaX < 0 && direction != "right") {
+                        direction = "left";
+                    }
+                } else {
+                    // Vertical swipe
+                    if (deltaY > 0 && direction != "up") {
+                        direction = "down";
+                    } else if (deltaY < 0 && direction != "down") {
+                        direction = "up";
+                    }
+                }
+            });
+
         })
     </script>
 
@@ -243,7 +296,14 @@
         </button>
     </div>
     <canvas width="600" height="600"></canvas>
-
+    <div class="mobile-controls">
+        <button class="control-btn up">↑</button>
+        <div class="horizontal-controls">
+            <button class="control-btn left">←</button>
+            <button class="control-btn right">→</button>
+        </div>
+        <button class="control-btn down">↓</button>
+    </div>
 </body>
 
 </html>
