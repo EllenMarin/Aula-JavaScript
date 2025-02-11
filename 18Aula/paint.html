@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.querySelector("canvas"); //sobre o elemento de html
+            const canvasCtx = canvas.getContext("2d");
+
+            const colorPicker = document.getElementById("colorPicker");
+            const linePicker = document.getElementById("linePicker");
+            const resetBtn = document.getElementById("resetBtn");
+
+            linePicker.addEventListener("change", () => {
+                canvasCtx.lineWidth = linePicker.value;
+
+            })
+            colorPicker.addEventListener("change", () => {
+                let atualColor = colorPicker.value;
+                canvasCtx.strokeStyle = atualColor;
+            })
+
+            resetBtn.addEventListener("click", () => {
+                if (confirm("Quer mesmo apagar a sua obra de arte?")) {
+                    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+
+            })
+
+            let clicking = false;
+
+            canvas.addEventListener("mousedown", (event) => {
+                clicking = true;
+                const canvasX = event.pageX - canvas.offsetLeft;
+                const canvasY = event.pageY - canvas.offsetTop;
+
+                canvasCtx.beginPath();
+                canvasCtx.moveTo(canvasX, canvasY);//mover o cursor
+            })
+
+            canvas.addEventListener("mouseup", (event) => {
+                clicking = false;
+            })
+
+            canvas.addEventListener("mousemove", (event) => {
+                if (clicking) {
+                    const canvasX = event.pageX - canvas.offsetLeft;
+                    const canvasY = event.pageY - canvas.offsetTop;
+                    //offsetLeft sabe sempre exatamente as cordenadas de onde esta o canvas posicionado
+                    console.log(canvasX, canvasY);
+
+
+                    canvasCtx.lineTo(canvasX, canvasY);
+                    canvasCtx.stroke();
+
+                }
+
+            })
+            canvas.addEventListener("mouseout", (event) => {
+                clicking = false;
+            })
+        })
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            max-width: 980px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        canvas {
+            border: 3px dashed #222;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+        <div>
+            <label>Escolher a cor
+                <select id="colorPicker">
+                    <option value="#000">Preto</option>
+                    <option value="#f00">Vermelho</option>
+                    <option value="#00f">Azul</option>
+                    <option value="#0f0">Verde claro</option>
+                    <option value="#060">Verde Escuro</option>
+                    <option value="#ccc">Cinzento claro</option>
+                    <option value="#333">Cinzento escuro</option>
+                    <option value="#ff0">Amarelo</option>
+                    <option value="#f0f">Rosa</option>
+                </select>
+            </label>
+            <label>Escolher Espessura
+                <select id="linePicker">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
+            </label>
+            <label>Borracha
+                <select id="eraseDrawing">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+            </label>
+            <button type="button" id="resetBtn"> Apagar tudo</button>
+        </div>
+        <div>
+            <canvas width="900" height="900"></canvas>
+        </div>
+    </main>
+</body>
+
+</html>
