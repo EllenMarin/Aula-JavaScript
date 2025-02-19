@@ -19,7 +19,8 @@ body {
     /*background-image: url("./snake/img/72174.jpg");*/
     color: #fff;
     position: relative;
-    margin-top: 20px;
+    padding-top: 40px;
+    margin: auto 0;
     overflow-y: hidden; 
 }
 /*body::after {

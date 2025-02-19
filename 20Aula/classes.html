@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <script>
+        /*Objeto simples == só existe uma unica instancia*/
+        const superHero = {
+            name: "Spidee-Man",
+            powerLevel: 100,
+            saveTheDay: function () {
+                this.powerLevel -= 20;
+            }
+        }
+        superHero.saveTheDay();
+        superHero.saveTheDay();
+        superHero.saveTheDay();
+
+        console.log(superHero.powerLevel)
+
+        /*Objeto complexo, serve para ser instanciada (reutilizada) multiplas vezes*/
+        class SuperHero {
+
+            name = "Generic Super Hero";
+            powerLevel = 100;
+
+            //construtor é algo que se ativa automaticamente sempre que for gerada uma nova instancia
+            constructor(newName, newAge, newPower) {
+                if (newName, newAge, newPower) {
+                    this.name = newName;
+                    this.age = newAge;
+                    this.power = newPower;
+                }
+            }
+
+            //função dentro de um obj == metodo
+            saveTheDay() {
+                this.powerLevel -= 20;
+            }
+        }
+        //instancias são criadas com a keyword "new"
+        const spiderMan = new SuperHero("Homem-aranha", 20, "velocidade");
+        const venom = new SuperHero("Venom", 32, "força");
+        const batman = new SuperHero("Batman", 23, "agilidade");
+        const generic = new SuperHero();
+
+        spiderMan.saveTheDay();
+        spiderMan.saveTheDay();
+        console.log("homem aranha: ", spiderMan.age)
+        console.log("venom: ", venom.name, venom.powerLevel)
+        console.log(batman)
+        console.log(generic)
+    </script>
+    <style>
+        body {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>

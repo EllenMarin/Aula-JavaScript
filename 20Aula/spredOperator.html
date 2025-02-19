@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread Operator</title>
+    <script>
+        /*Spread operator serve para combinar valores de dois arrays diferentes em um unico array */
+        const evenNumbers = [2, 4, 6, 8, 10];
+        const oddNumbers = [1, 3, 5, 7, 9];
+
+        const numbers = [...evenNumbers, ...oddNumbers];
+        console.log(numbers)
+
+        function sumNumbers(x, y, z, w, h) {
+            return x + y + z + w + h;
+        }
+        console.log(sumNumbers(...evenNumbers))
+        console.log(sumNumbers(...oddNumbers))
+    </script>
+    <style>
+        body {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>

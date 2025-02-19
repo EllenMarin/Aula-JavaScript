@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio com Class</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.querySelector("canvas");
+            const ctx = canvas.getContext("2d");
+
+
+            class PongRacket {
+                x = 0;
+                y = 0;
+                width = 20;
+                height = 100;
+
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                }
+
+                moveUp() {
+                    if (this.y > 0) {
+                        this.y -= 20;
+                        console.log("move up: ", this.y)
+                    }
+
+
+                }
+                moveDown() {
+                    if (this.y + this.height + 20 <= canvas.height) {
+                        this.y += 20;
+                        console.log("move down: ", this.y)
+                    }
+
+                }
+            }
+            /*mostrar duas raquetes na pagina atraves do canvas, criando duas instancias da class, utilizar os eventos do teclado para controlar a raquete da esquerda pressionando para cima */
+
+            const racketLeft = new PongRacket(20, 60);
+            const racketRight = new PongRacket(840, 740);
+
+            setInterval(() => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillRect(racketLeft.x, racketLeft.y, racketLeft.width, racketLeft.height);
+                ctx.fillRect(racketRight.x, racketRight.y, racketRight.width, racketRight.height);
+
+            }, 30)
+
+
+            document.addEventListener("keydown", (event) => {
+
+                if (event.keyCode === 38) {
+                    racketLeft.moveUp();
+                }
+
+                if (event.keyCode === 40) {
+                    racketLeft.moveDown();
+                }
+                /*controlar raquete da esquerda com as teclas de w e s*/
+                console.log(event.keyCode)
+                if (event.keyCode === 87) {
+                    racketRight.moveUp();
+                }
+                if (event.keyCode === 83) {
+                    racketRight.moveDown();
+                }
+
+
+            })
+
+
+
+        })
+    </script>
+    <style>
+        body {
+            background-color: #4d4c4c;
+        }
+
+        canvas {
+            border: 5px solid #000;
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="900" height="900"></canvas>
+
+</body>
+
+</html>
